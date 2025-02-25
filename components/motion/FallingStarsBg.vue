@@ -6,7 +6,8 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from "vue";
+import { onMounted, ref, computed, onUnmounted } from "vue";
+import { useTheme } from '@/composables/useTheme';
 import { cn } from "~/lib/utils";
 
 interface Star {
@@ -23,15 +24,24 @@ const props = withDefaults(
     class?: string;
   }>(),
   {
-    color: "#FFF",
+    color: "", // Default color will be computed based on theme
     count: 200,
   },
 );
+
+// Use our global theme composable
+const { isDark } = useTheme();
+
+// Compute star color based on theme
+const starColor = computed(() => {
+  return props.color || (isDark.value ? '#FFF' : '#4F46E5');
+});
 
 const starsCanvas = ref<HTMLCanvasElement | null>(null);
 let perspective: number = 0;
 let stars: Star[] = [];
 let ctx: CanvasRenderingContext2D | null = null;
+let animationFrameId: number | null = null;
 
 onMounted(() => {
   const canvas = starsCanvas.value;
@@ -56,8 +66,8 @@ onMounted(() => {
   animate(); // Start animation
 });
 
-function hexToRgb() {
-  let hex = props.color.replace(/^#/, "");
+function hexToRgb(color: string) {
+  let hex = color.replace(/^#/, "");
 
   // If the hex code is 3 characters, expand it to 6 characters
   if (hex.length === 3) {
@@ -99,7 +109,7 @@ function drawStar(star: Star) {
   const xPrev = canvas.width / 2 + star.x * prevScale;
   const yPrev = canvas.height / 2 + star.y * prevScale;
 
-  const rgb = hexToRgb();
+  const rgb = hexToRgb(starColor.value);
 
   // Draw blurred trail (longer, with low opacity)
   ctx.save(); // Save current context state for restoring later
@@ -152,7 +162,7 @@ function animate() {
     }
   });
 
-  requestAnimationFrame(animate); // Continue animation
+  animationFrameId = requestAnimationFrame(animate); // Continue animation
 }
 
 // Set canvas to full screen
@@ -163,4 +173,12 @@ function resizeCanvas() {
   canvas.width = canvas.clientWidth;
   canvas.height = canvas.clientHeight;
 }
+
+// Clean up on component unmount
+onUnmounted(() => {
+  window.removeEventListener("resize", resizeCanvas);
+  if (animationFrameId !== null) {
+    cancelAnimationFrame(animationFrameId);
+  }
+});
 </script>

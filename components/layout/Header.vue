@@ -1,7 +1,7 @@
 <template>
   <div class="fixed top-0 left-0 right-0 z-50 flex justify-center px-4 pt-6">
     <header class="backdrop-blur-md bg-background/60 dark:bg-background/40 rounded-full shadow-lg border border-white/10 dark:border-white/5 px-6 py-2 max-w-5xl w-full mx-auto flex justify-between items-center">
-      <NuxtLink to="/" class="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+      <NuxtLink to="/" class="text-2xl font-bold bg-gradient-to-r from-purple-400 to-indigo-500 bg-clip-text text-transparent">
         Nexcode
       </NuxtLink>
 
@@ -13,8 +13,8 @@
             </NuxtLink>
           </li>
           <li>
-            <NuxtLink to="/motion-demo" class="px-3 py-1.5 rounded-full hover:bg-white/10 dark:hover:bg-white/5 transition-colors">
-              Animations
+            <NuxtLink to="/pricing" class="px-3 py-1.5 rounded-full hover:bg-white/10 dark:hover:bg-white/5 transition-colors">
+              Pricing
             </NuxtLink>
           </li>
           <li v-if="user">

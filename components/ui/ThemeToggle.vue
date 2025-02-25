@@ -13,26 +13,10 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
 import { MoonIcon, SunIcon } from 'lucide-vue-next'
 import { Button } from './button'
+import { useTheme } from '@/composables/useTheme'
 
-const isDark = ref(false)
-
-// Function to toggle theme
-const toggleTheme = () => {
-  if (isDark.value) {
-    document.documentElement.classList.remove('dark')
-    localStorage.setItem('color-mode', 'light')
-  } else {
-    document.documentElement.classList.add('dark')
-    localStorage.setItem('color-mode', 'dark')
-  }
-  isDark.value = !isDark.value
-}
-
-// Initialize theme on mount
-onMounted(() => {
-  isDark.value = document.documentElement.classList.contains('dark')
-})
+// Use our global theme composable
+const { isDark, toggleTheme } = useTheme()
 </script> 

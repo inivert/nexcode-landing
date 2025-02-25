@@ -1,5 +1,5 @@
 <template>
-  <div class="relative inline-block px-2">
+  <div class="relative inline-block">
     <Transition
       @after-enter="$emit('animationStart')"
       @after-leave="$emit('animationComplete')"
@@ -7,35 +7,13 @@
       <div
         v-show="isVisible"
         :class="[
-          'relative z-10 inline-block text-left text-neutral-900 dark:text-neutral-100',
+          'relative z-10 inline-block text-left min-h-[1.2em]',
           props.class,
         ]"
       >
-        <template
-          v-for="(wordObj, wordIndex) in splitWords"
-          :key="wordObj.word + wordIndex"
-        >
-          <span
-            class="inline-block whitespace-nowrap opacity-0"
-            :style="{
-              animation: `fadeInWord 0.3s ease forwards`,
-              animationDelay: `${wordIndex * 0.3}s`,
-            }"
-          >
-            <span
-              v-for="(letter, letterIndex) in wordObj.letters"
-              :key="wordObj.word + letterIndex"
-              class="inline-block opacity-0"
-              :style="{
-                animation: `fadeInLetter 0.2s ease forwards`,
-                animationDelay: `${wordIndex * 0.3 + letterIndex * 0.05}s`,
-              }"
-            >
-              {{ letter }}
-            </span>
-            <span class="inline-block">&nbsp;</span>
-          </span>
-        </template>
+        <span class="inline-block whitespace-nowrap w-full text-center">
+          {{ currentWord }}
+        </span>
       </div>
     </Transition>
   </div>
@@ -70,13 +48,6 @@ function startAnimation() {
   }, 600);
 }
 
-const splitWords = computed(() => {
-  return currentWord.value.split(" ").map((word) => ({
-    word,
-    letters: word.split(""),
-  }));
-});
-
 function startTimeout() {
   timeoutId.value = window.setTimeout(() => {
     startAnimation();
@@ -100,33 +71,7 @@ watch(isVisible, (newValue) => {
 });
 </script>
 
-<style>
-@keyframes fadeInWord {
-  0% {
-    opacity: 0;
-    transform: translateY(10px);
-    filter: blur(8px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-    filter: blur(0);
-  }
-}
-
-@keyframes fadeInLetter {
-  0% {
-    opacity: 0;
-    transform: translateY(10px);
-    filter: blur(8px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-    filter: blur(0);
-  }
-}
-
+<style scoped>
 .v-enter-active {
   animation: enterWord 0.6s ease-in-out forwards;
 }
