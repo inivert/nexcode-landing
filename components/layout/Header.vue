@@ -1,39 +1,39 @@
 <template>
-  <header class="bg-background border-b p-4">
-    <div class="container mx-auto flex justify-between items-center">
-      <NuxtLink to="/" class="text-2xl font-bold text-primary">
+  <div class="fixed top-0 left-0 right-0 z-50 flex justify-center px-4 pt-6">
+    <header class="backdrop-blur-md bg-background/60 dark:bg-background/40 rounded-full shadow-lg border border-white/10 dark:border-white/5 px-6 py-2 max-w-5xl w-full mx-auto flex justify-between items-center">
+      <NuxtLink to="/" class="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
         Nexcode
       </NuxtLink>
 
       <nav>
         <ul class="flex space-x-4 items-center">
           <li>
-            <NuxtLink to="/" class="hover:text-primary transition-colors">
+            <NuxtLink to="/" class="px-3 py-1.5 rounded-full hover:bg-white/10 dark:hover:bg-white/5 transition-colors">
               Home
             </NuxtLink>
           </li>
           <li>
-            <NuxtLink to="/motion-demo" class="hover:text-primary transition-colors">
+            <NuxtLink to="/motion-demo" class="px-3 py-1.5 rounded-full hover:bg-white/10 dark:hover:bg-white/5 transition-colors">
               Animations
             </NuxtLink>
           </li>
           <li v-if="user">
-            <NuxtLink to="/dashboard" class="hover:text-primary transition-colors">
+            <NuxtLink to="/dashboard" class="px-3 py-1.5 rounded-full hover:bg-white/10 dark:hover:bg-white/5 transition-colors">
               Dashboard
             </NuxtLink>
           </li>
           <li v-if="!user">
-            <NuxtLink to="/auth/login" class="hover:text-primary transition-colors">
+            <NuxtLink to="/auth/login" class="px-3 py-1.5 rounded-full hover:bg-white/10 dark:hover:bg-white/5 transition-colors">
               Login
             </NuxtLink>
           </li>
           <li v-if="!user">
-            <NuxtLink to="/auth/signup" class="hover:text-primary transition-colors">
+            <NuxtLink to="/auth/signup" class="px-3 py-1.5 rounded-full hover:bg-white/10 dark:hover:bg-white/5 transition-colors">
               Sign Up
             </NuxtLink>
           </li>
           <li v-if="user">
-            <Button variant="ghost" @click="logout" size="sm">
+            <Button variant="ghost" @click="logout" size="sm" class="rounded-full">
               Logout
             </Button>
           </li>
@@ -42,8 +42,8 @@
           </li>
         </ul>
       </nav>
-    </div>
-  </header>
+    </header>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -59,4 +59,11 @@ const logout = async () => {
   await supabase.auth.signOut()
   router.push('/')
 }
-</script> 
+</script>
+
+<style scoped>
+.bg-clip-text {
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+</style> 

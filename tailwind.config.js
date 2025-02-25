@@ -64,6 +64,28 @@ export default {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
+      keyframes: {
+        "falling-star": {
+          "0%": {
+            transform: "translateY(0) rotate(45deg) scale(0)",
+            opacity: 0
+          },
+          "5%": {
+            opacity: 1
+          },
+          "70%": {
+            transform: "translateY(1500px) rotate(45deg) scale(1)",
+            opacity: 1
+          },
+          "100%": {
+            transform: "translateY(2000px) rotate(45deg) scale(1)",
+            opacity: 0
+          }
+        }
+      },
+      animation: {
+        "falling-star": "falling-star linear infinite"
+      }
     },
   },
   plugins: [animate, setupInspiraUI],
