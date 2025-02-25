@@ -1,0 +1,47 @@
+{
+  "name": "nuxt-app",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "dev:noprompt": "cross-env PRISMA_MIGRATION_SKIP=true nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "prisma:generate": "prisma generate",
+    "prisma:push": "prisma db push",
+    "prisma:push:force": "prisma db push --accept-data-loss --force-reset",
+    "prisma:migrate": "prisma migrate dev"
+  },
+  "dependencies": {
+    "@nuxtjs/supabase": "^1.4.6",
+    "@prisma/client": "^6.4.1",
+    "@supabase/supabase-js": "^2.49.1",
+    "@vee-validate/zod": "^4.15.0",
+    "@vueuse/core": "^12.7.0",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "lucide-vue-next": "^0.475.0",
+    "motion-v": "0.11.0-beta.4",
+    "nuxt": "^3.15.4",
+    "reka-ui": "^2.0.0",
+    "shadcn-nuxt": "1.0.1",
+    "tailwind-merge": "^3.0.2",
+    "tailwindcss-animate": "^1.0.7",
+    "vee-validate": "^4.15.0",
+    "vue": "latest",
+    "vue-router": "latest",
+    "zod": "^3.24.2"
+  },
+  "packageManager": "pnpm@9.15.4+sha512.b2dc20e2fc72b3e18848459b37359a32064663e5627a51e4c74b2c29dd8e8e0491483c3abb40789cfd578bf362fb6ba8261b05f0387d76792ed6e23ea3b1b6a0",
+  "devDependencies": {
+    "@inspira-ui/plugins": "0.0.1",
+    "@nuxtjs/tailwindcss": "^6.13.1",
+    "@prisma/nuxt": "^0.3.0",
+    "@vueuse/nuxt": "^12.7.0",
+    "cross-env": "7.0.3",
+    "prisma": "^6.4.1",
+    "typescript": "^5.7.3"
+  }
+}
