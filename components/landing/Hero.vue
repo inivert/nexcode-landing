@@ -35,9 +35,9 @@
         </span>
 
         <div class="my-2 flex flex-row items-center justify-center gap-4">
-          <UiButton to="/components" class="bg-gradient-to-r from-purple-600 to-indigo-700 hover:from-purple-700 hover:to-indigo-800"> Get Started </UiButton>
+          <UiButton to="/auth/signup" class="bg-gradient-to-r from-purple-600 to-indigo-700 hover:from-purple-700 hover:to-indigo-800"> Get Started </UiButton>
           <UiButton
-            to="/blocks"
+            to="/docs"
             variant="secondary"
             class="bg-gradient-to-r from-indigo-600 to-purple-700 hover:from-indigo-700 hover:to-purple-800 text-white"
           >

@@ -3,18 +3,20 @@
     v-if="to"
     :to="to"
     :class="[
-      'inline-flex items-center justify-center rounded-md px-4 py-2 font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background',
+      'inline-flex items-center justify-center rounded-md px-4 py-2 font-medium transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/50 focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background',
       variantClasses,
       sizeClasses,
       $attrs.class
     ]"
   >
-    <slot />
+    <span class="relative z-10 flex items-center gap-2 group">
+      <slot />
+    </span>
   </NuxtLink>
   <button
     v-else
     :class="[
-      'inline-flex items-center justify-center rounded-md px-4 py-2 font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background',
+      'inline-flex items-center justify-center rounded-md px-4 py-2 font-medium transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/50 focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background',
       variantClasses,
       sizeClasses,
       $attrs.class
@@ -22,7 +24,9 @@
     :disabled="disabled"
     :type="type"
   >
-    <slot />
+    <span class="relative z-10 flex items-center gap-2 group">
+      <slot />
+    </span>
   </button>
 </template>
 
@@ -48,17 +52,17 @@ const props = withDefaults(defineProps<Props>(), {
 const variantClasses = computed(() => {
   switch (props.variant) {
     case 'default':
-      return 'bg-primary text-primary-foreground hover:bg-primary/90'
+      return 'bg-primary text-primary-foreground hover:bg-primary/90 shadow-sm hover:shadow-md hover:-translate-y-0.5'
     case 'secondary':
-      return 'bg-secondary text-secondary-foreground hover:bg-secondary/90'
+      return 'bg-secondary text-secondary-foreground hover:bg-secondary/90 shadow-sm hover:shadow-md hover:-translate-y-0.5'
     case 'outline':
-      return 'border border-input bg-background hover:bg-accent hover:text-accent-foreground'
+      return 'border border-input bg-background hover:bg-accent hover:text-accent-foreground hover:-translate-y-0.5'
     case 'ghost':
-      return 'hover:bg-accent hover:text-accent-foreground'
+      return 'hover:bg-accent hover:text-accent-foreground hover:-translate-y-0.5'
     case 'link':
       return 'text-primary underline-offset-4 hover:underline'
     default:
-      return 'bg-primary text-primary-foreground hover:bg-primary/90'
+      return 'bg-primary text-primary-foreground hover:bg-primary/90 shadow-sm hover:shadow-md hover:-translate-y-0.5'
   }
 })
 
@@ -76,4 +80,11 @@ const sizeClasses = computed(() => {
       return 'h-10 py-2 px-4'
   }
 })
-</script> 
+</script>
+
+<style scoped>
+button, a {
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+</style> 

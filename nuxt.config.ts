@@ -10,6 +10,13 @@ export default defineNuxtConfig({
     '@nuxtjs/supabase',
     '@nuxtjs/color-mode'
   ],
+  // Enable page transitions
+  app: {
+    pageTransition: {
+      name: 'page',
+      mode: 'out-in'
+    }
+  },
   shadcn: {
     /**
      * Prefix for all the imported component

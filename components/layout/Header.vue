@@ -8,11 +8,6 @@
       <nav>
         <ul class="flex space-x-4 items-center">
           <li>
-            <NuxtLink to="/" class="px-3 py-1.5 rounded-full hover:bg-white/10 dark:hover:bg-white/5 transition-colors">
-              Home
-            </NuxtLink>
-          </li>
-          <li>
             <NuxtLink to="/pricing" class="px-3 py-1.5 rounded-full hover:bg-white/10 dark:hover:bg-white/5 transition-colors">
               Pricing
             </NuxtLink>
